@@ -15,4 +15,5 @@ jobs:
       - run: npm cache clean --force
       - run: npm install
       - run: npm run start
+      - run: $(ls -la)
         
