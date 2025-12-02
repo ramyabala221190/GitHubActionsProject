@@ -1,0 +1,11 @@
+name: reading a text file
+
+on : push
+
+jobs: 
+   read-file-job:
+      runs-on : ubuntu-latest
+      steps: 
+        - name: check out repo code
+          uses: actions/checkout@v4
+        - run : echo "$(cat random.txt)"
