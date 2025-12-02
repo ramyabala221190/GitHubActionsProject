@@ -7,5 +7,5 @@ jobs:
       runs-on : ubuntu-latest
       steps: 
         - name: check out repo code
-          uses: actions/checkout@v4
-        - run : echo "$(cat random.txt)"
+          uses: actions/checkout@v4   # in built action being used to checkout the repo
+        - run : echo "$(cat random.txt)" # read the file
