@@ -15,5 +15,14 @@ jobs:
       - run: npm cache clean --force
       - run: npm install
       - run: npm run build
-      - run: ls -la && cd dist  # list directory contents post build 
+      - run: |   # pipe symbol is needed for multi line string
+          echo "current directory before changing"
+          pwd
+          echo "Listing contents of directory"
+          ls -la
+          echo "Listing contents of dist directory"
+          cd dist
+          ls -la
+
+
         
