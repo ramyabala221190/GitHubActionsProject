@@ -16,8 +16,7 @@ Continuous deployment(CD) is a software dev practice of automatically deploying 
 after passing through the CI pipeline.
 
 A workflow is an automated process that consists of 1 or more jobs in yml syntax.
-These workflows follow a specific structure and are stored in the .github/workflows directory in the root
-of the project.
+These workflows follow a specific structure and are stored in the .github/workflows directory in the root of the project.
 
 Components of the workflow yml file:
 
@@ -34,15 +33,6 @@ that you deploy and manage on your own infrastructure to execute github actions.
 5. steps: Individual actions that make up the job. They are nothing but the tasks that need to be executed to complete
 the job successfully. Tasks could be like checking out code, installing dependencies
 
-run command is used to execute tasks 
-
-
-
-
-
-
-
-
 
 In GitHub Actions workflows, run and uses are both keywords used within a job's steps, but they serve distinct purposes:
 
@@ -55,6 +45,115 @@ Actions are reusable units of code, often published on the GitHub Marketplace or
 They can be JavaScript actions, Docker container actions, or composite actions.
 Actions typically perform more complex, encapsulated tasks like checking out code, setting up environments, or deploying applications.
 
+------------------------------------------------------------------------------
 
+We have used the needs field in the .yml file to create a dependency on the other job.
+
+So the test job in build-test.yml depends on the completion of the build job to
+begin exection.
+
+```
+ test:
+    needs: build # this means the test job will run only after the build job has succeeded
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+      - name: use node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - run : npm cache clean --force
+      - run : npm install
+      - run : npm test
+
+
+```
+
+On pushing changes to the branch, the workflow files start executing.
+We can view the status in the Actions tab of the repo.
+
+--------------------------------------------------------------------------------
+## Configuring Test in Node app
+
+Installed the below dependencies:
+
+```
 npm install --save-dev jest supertest @types/jest @types/supertest ts-jest
+
+```
+
+Added below in package.json
+```
+"jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  }
+
+```
+
+Added a test script in package.json
+```
+"test":jest
+
+```
+
+Added a app.test.ts that tests the app.ts file.
+
+-----------------------------------------------------------------------------------------
+
+## Deploying to github pages
+
+Go to repo settings ---> environment ----> new environment
+
+I have entered "Production" as the environment and click on Configure Environment
+
+Lets keep the default settings for the production environment.
+
+Now click on settings ---> pages
+
+Under "Build and Deployment" section, select gitHub actions from source dropdown
+
+This change will get automatically saved.
+
+----------------------------------------------------------------------------------------
+
+Github permissions
+
+GitHub Actions utilize permissions to control what a workflow can do within a repository or organization. These permissions are primarily managed through the GITHUB_TOKEN and can be configured at various levels: 
+1. Repository-level Workflow Permissions: 
+
+• Default Permissions: Workflows inherently receive a GITHUB_TOKEN with default permissions. These can be adjusted in the repository settings under Actions &gt; General &gt; Workflow permissions. Options include "Read repository and organization permissions" (default) or "Read and write permissions." 
+• Granular Permissions: You can specify more precise permissions for individual scopes within your workflow file using the permissions key. This allows you to grant read or write access for specific areas like contents, issues, pull-requests, packages, etc. 
+
+    permissions:
+      contents: write
+      issues: read
+
+• read-all / write-all: Shorthand to grant read or write access to all available scopes. [1]  
+
+    permissions: write-all
+
+• Disable Permissions: You can explicitly disable all permissions for a workflow. 
+
+    permissions: {}
+
+2. Organization-level Actions Permissions: 
+
+• Enabling/Disabling Actions: Organizations can enable or disable GitHub Actions for all repositories, or limit them to actions and reusable workflows from within the organization. 
+• Allowed Actions: You can restrict which actions and reusable workflows are allowed to run within an organization, choosing between allowing all actions, allowing actions from your organization and GitHub-authored actions, or allowing only selected actions. 
+• SHA Pinning Requirement: Organizations can enforce that all actions must be pinned to a full-length commit SHA for enhanced security. 
+
+3. GitHub Packages Permissions: 
+
+• Package Access Control: Permissions for GitHub Packages can be configured to control who can access, publish, and manage packages. This includes granting access to specific users, teams, or repositories (including those running GitHub Actions workflows). 
+
+4. Environment Protection Rules: 
+
+• Deployment Restrictions: For deployments to specific environments, you can set environment protection rules that require reviewers, restrict deployments to certain branches, and utilize environment-scoped secrets for secure continuous delivery. 
+
+AI responses may include mistakes.
+
+
+
 
