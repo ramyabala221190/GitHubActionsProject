@@ -1,8 +1,9 @@
 import express from 'express';
+import { join } from 'path';
 
 const app=express();
 
-app.get('/hello',(req,res,next)=>{
+app.get('/',(req,res,next)=>{
     res.send(`Express application running on port 3000`);
 })
 
