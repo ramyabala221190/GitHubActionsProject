@@ -1,0 +1,20 @@
+name: Testing different triggers for a workflow
+
+on: 
+  push:  # bydefault triggers for any branch unless specific branches specified
+   branches:
+     - main  # trigger only for main branch
+   
+jobs:
+  test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout repo
+          uses: actions/checkout@v4
+        - name: Logging current work directory
+          run: pwd
+
+
+    
+
+

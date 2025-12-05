@@ -1,5 +1,7 @@
 Github Actions
 
+Install the Github Actions extension
+
 Purpose is CI CD. Similar to jenkins
 It automates the way you build,test and deploy directly from your github repos.
 Create and manage workflows using code
@@ -116,6 +118,8 @@ Under "Build and Deployment" section, select gitHub actions from source dropdown
 
 This change will get automatically saved.
 
+https://ramyabala221190.github.io/GitHubActionsProject/ is the target url
+
 ----------------------------------------------------------------------------------------
 
 Github permissions
@@ -153,6 +157,18 @@ GitHub Actions utilize permissions to control what a workflow can do within a re
 • Deployment Restrictions: For deployments to specific environments, you can set environment protection rules that require reviewers, restrict deployments to certain branches, and utilize environment-scoped secrets for secure continuous delivery. 
 
 AI responses may include mistakes.
+
+-----------------------------------------------------------
+
+## Github permissions
+
+GitHub Actions workflow permissions control the level of access the GITHUB_TOKEN has to your repository and its resources during a workflow run. These permissions can be configured at the repository, organization, or even job level to enforce the principle of least privilege.
+
+
+## Events that trigger workflow
+
+https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+
 
 
 

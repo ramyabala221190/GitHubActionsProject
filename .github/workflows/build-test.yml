@@ -1,6 +1,11 @@
-name: Building and Testing the app
+name: Building and Testing the app  # The name of the workflow. 
 
-on: push
+on: push  
+
+#To automatically trigger a workflow, use on to define which events can cause the workflow to run.
+# for single event just specify the event name. For multiple events, specify the array of event names
+# If you specify multiple events, only one of those events needs to occur to trigger your workflow. 
+# If multiple triggering events for your workflow occur at the same time, multiple workflow runs will be triggered.
 
 jobs: 
   build:
