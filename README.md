@@ -170,6 +170,34 @@ GitHub Actions workflow permissions control the level of access the GITHUB_TOKEN
 https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
 
 
+## Scheduling events using cron
+
+https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onschedule
+
+
+-----------------------
+
+GitHub Copilot's "chat modes," more recently referred to as "agents," are predefined configurations that allow users to tailor the behavior of Copilot Chat for specific tasks or personas. These modes enable you to specialize the AI's responses and actions to fit different roles or objectives within your development workflow. 
+Built-in Modes (or Agents): 
+
+• Ask Mode: Designed for general question-and-answer interactions, such as explaining code, exploring APIs, or brainstorming ideas. 
+• Edit Mode: Focused on making targeted changes directly within your code, like refactoring functions or implementing specific modifications. 
+• Agent Mode: Facilitates multi-step, automated changes across multiple files, enabling Copilot to handle more complex, autonomous tasks like adding logging to all API endpoints. 
+
+Custom Modes (or Agents): 
+Users can also create their own custom chat modes, which offer a higher level of customization. These custom modes can: 
+
+• Define a Persona: Assign a specific role or persona to Copilot, such as a "senior C# developer," "DevOps engineer," or a "critical thinking persona," influencing the AI's tone and approach. 
+• Specify Tools: Grant the custom mode access to specific tools, like search capabilities or the ability to interact with the codebase, to enhance its functionality for particular tasks. 
+• Include Instructions: Provide detailed instructions or guidelines to the AI, dictating how it should perform tasks, adhere to coding practices, or format its output. 
+• Grounding and Context: Reference specific files or parts of the codebase to provide context for conversations, allowing Copilot to generate more relevant and accurate responses. 
+
+These custom modes, typically defined in .agent.md files within a .github/agents folder in your workspace, offer a powerful way to personalize your interaction with GitHub Copilot Chat and optimize it for your individual or team's needs. 
+
+AI responses may include mistakes.
+
+
+
 
 
 
