@@ -1,11 +1,8 @@
-name: Testing push trigger for a workflow
+name: Testing manual triggers for a workflow
 
-on: 
-  push:  # bydefault triggers for any branch unless specific branches specified
-   branches:
-     - main  # trigger only for pushes to the main branch
-
-
+# manually trigger a workflow from github
+on:
+ workflow_dispatch:
    
 jobs:
   test:
